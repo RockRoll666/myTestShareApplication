@@ -9,7 +9,10 @@ import android.widget.Button;
 import com.example.liplop.myapplication.R;
 import com.example.liplop.myapplication.utis.ImageUtil;
 import com.example.liplop.myapplication.utis.ShareUtils;
+import com.example.liplop.myapplication.utis.ToastUtil;
 import com.sina.weibo.sdk.api.WebpageObject;
+import com.sina.weibo.sdk.share.WbShareCallback;
+import com.sina.weibo.sdk.share.WbShareHandler;
 import com.tencent.connect.common.Constants;
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;
@@ -19,12 +22,11 @@ import com.tencent.tauth.Tencent;
 
 import java.util.ArrayList;
 
-import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements WbShareCallback{
     @BindView(R.id.btn_share_qq)
     Button qq;
     @BindView(R.id.btn_share_qzone)
@@ -35,11 +37,15 @@ public class MainActivity extends AppCompatActivity {
     Button wxapp;
     @BindView(R.id.btn_share_wxpyq)
     Button wxpyq;
+
+    private WbShareHandler mWbShareHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        mWbShareHandler = new WbShareHandler(this);
+        mWbShareHandler.registerApp();
     }
 
     @OnClick({R.id.btn_share_qq,R.id.btn_share_qzone,R.id.btn_share_weibo,R.id.btn_share_wxapp,R.id.btn_share_wxpyq})
@@ -95,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 wbWebpageObject.description = "分享内容";
                 wbWebpageObject.thumbData = ImageUtil.resToBytes(R.mipmap.ic_launcher);
                 wbWebpageObject.actionUrl = "http://www.baidu.com";
-                ShareUtils.shareToSinaWeibo(this,wbWebpageObject);
+                ShareUtils.shareToSinaWeibo(mWbShareHandler,wbWebpageObject);
                 break;
             case R.id.btn_share_qzone:
                 params = new Bundle();
@@ -125,5 +131,26 @@ public class MainActivity extends AppCompatActivity {
                 Tencent.handleResultData(data, new ShareUtils.MyIUiListener());
             }
         }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        mWbShareHandler.doResultIntent(intent,this);
+    }
+
+    @Override
+    public void onWbShareSuccess() {
+        ToastUtil.showToast("分享成功");
+    }
+
+    @Override
+    public void onWbShareCancel() {
+        ToastUtil.showToast("取消分享");
+    }
+
+    @Override
+    public void onWbShareFail() {
+        ToastUtil.showToast("分享失败");
     }
 }

@@ -15,7 +15,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 public class WXApiManager {
     private static WXApiManager wxApiManager;
 
-    public static final String APP_ID = "wx3ceb24375ea9abe4";
+    public static final String APP_ID = "wx3ceb24375e9abe4";
     private IWXAPI wxapi;
 
     private WXApiManager(){

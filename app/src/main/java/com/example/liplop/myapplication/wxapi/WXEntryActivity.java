@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.liplop.myapplication.common.AppConfig;
+import com.example.liplop.myapplication.common.WXApiManager;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -37,10 +38,8 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        WXApiManager.getInst().handleIntent(getIntent(),this);
 
-        wxapi = WXAPIFactory.createWXAPI(this, AppConfig.WX_APP_ID, true);
-        wxapi.registerApp(AppConfig.WX_APP_ID);
+        wxapi = WXApiManager.getInst().getWxapi();
         wxapi.handleIntent(getIntent(), this);
     }
 

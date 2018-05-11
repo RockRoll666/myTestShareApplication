@@ -11,23 +11,20 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
 
-    signingConfigs {
-        release {
-            keyAlias 'xiansubway'
-            keyPassword 'xiaoma123'
-            storeFile file('D:\\program\\xiansubway_sign.jks')
-            storePassword 'xiaoma123'
-        }
-        debug {
-        }
-    }
+
 }
 
 dependencies {
@@ -39,7 +36,7 @@ dependencies {
     testImplementation  'junit:junit:4.12'
     implementation  files('libs/open_sdk_r5990_lite.jar')
     implementation  'com.sina.weibo.sdk:core:4.2.7:openDefaultRelease@aar'
-    implementation  'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    implementation  'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.1.4'
     implementation  'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }

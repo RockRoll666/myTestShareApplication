@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.example.liplop.myapplication.MyApplication;
-import com.example.liplop.myapplication.activity.SinaWbShareEntryActivity;
 import com.example.liplop.myapplication.common.AppConfig;
 import com.example.liplop.myapplication.common.WXApiManager;
 import com.sina.weibo.sdk.WbSdk;
 import com.sina.weibo.sdk.api.WebpageObject;
+import com.sina.weibo.sdk.api.WeiboMultiMessage;
 import com.sina.weibo.sdk.auth.AuthInfo;
+import com.sina.weibo.sdk.share.WbShareHandler;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 import com.tencent.tauth.IUiListener;
@@ -24,7 +25,6 @@ import com.tencent.tauth.UiError;
 public class ShareUtils {
     private static final int WXAPP = 11;
     private static final int WXTIMELINE = 12;
-    private static boolean WEIBO_INITED = false;
     /**
      * qq好友
      */
@@ -101,16 +101,14 @@ public class ShareUtils {
 
         }
         req.transaction = "webpage";  //这个tag要唯一,用于在回调中分辨是哪个分享请求
-        WXApiManager.getInst().sendRequest(req);   //如果调用成功微信,会返回true
+        boolean suc = WXApiManager.getInst().sendRequest(req);   //如果调用成功微信,会返回true
+        String s = "";
     }
 
-    public static void shareToSinaWeibo(Activity context,WebpageObject webpageObject){
-        if (!WEIBO_INITED){
-            WbSdk.install(MyApplication.getInstance().getApplicationContext(),
-                    new AuthInfo(MyApplication.getInstance().getApplicationContext(),
-                    AppConfig.WB_APP_KEY,AppConfig.WB_REDIRECT_URL,AppConfig.WB_SCOPE));
-            WEIBO_INITED = true;
-        }
+    public static void shareToSinaWeibo(WbShareHandler wbShareHandler, WebpageObject webpageObject){
+        WeiboMultiMessage weiboMultiMessage = new WeiboMultiMessage();
+        weiboMultiMessage.mediaObject = webpageObject;
+        wbShareHandler.shareMessage(weiboMultiMessage,false);
 //        SinaWbShareEntryActivity.startActivityByIntent(context,webpageObject);
     }
 }
