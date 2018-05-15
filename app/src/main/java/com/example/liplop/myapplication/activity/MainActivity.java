@@ -37,6 +37,12 @@ public class MainActivity extends AppCompatActivity implements WbShareCallback{
     Button wxapp;
     @BindView(R.id.btn_share_wxpyq)
     Button wxpyq;
+    @BindView(R.id.btn_test_abl)
+    Button ablBtn;
+    @BindView(R.id.btn_home_page)
+    Button btnHome;
+    @BindView(R.id.btn_home_page_new)
+    Button btnHomeNew;
 
     private WbShareHandler mWbShareHandler;
     @Override
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements WbShareCallback{
         mWbShareHandler.registerApp();
     }
 
-    @OnClick({R.id.btn_share_qq,R.id.btn_share_qzone,R.id.btn_share_weibo,R.id.btn_share_wxapp,R.id.btn_share_wxpyq})
+    @OnClick({R.id.btn_share_qq,R.id.btn_share_qzone,R.id.btn_share_weibo,R.id.btn_share_wxapp,R.id.btn_share_wxpyq,R.id.btn_test_abl,R.id.btn_home_page,R.id.btn_home_page_new})
     void onBtnClick(View v){
         WXWebpageObject webpageObject;
         WXMediaMessage msg;
@@ -115,6 +121,18 @@ public class MainActivity extends AppCompatActivity implements WbShareCallback{
                 //params.putString(QQShare.SHARE_TO_QQ_APP_NAME,"西安地铁");
                 //params.putString(QQShare.SHARE_TO_QQ_EXT_INT, "其它附加功能");
                 ShareUtils.shareToQZone(this,params);
+                break;
+            case R.id.btn_test_abl:
+                Intent intent1 = new Intent(this,NestedScrollActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.btn_home_page:
+                Intent intent2 = new Intent(this,HomePageActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.btn_home_page_new:
+                Intent intent3 = new Intent(this,HomePageNewActivity.class);
+                startActivity(intent3);
                 break;
             default:
                 break;

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/rfl_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.example.liplop.myapplication.view.HomePageCoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".activity.NestedScrollActivity">
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/abl_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/rl_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="@color/colorAccent"
+                    app:layout_scrollFlags="scroll|enterAlways"/>
+                <net.lucode.hackware.magicindicator.MagicIndicator
+                    android:id="@+id/ind_original"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"/>
+            </android.support.design.widget.AppBarLayout>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:background="@color/white"/>
+        </com.example.liplop.myapplication.view.HomePageCoordinatorLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white_title">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            android:textColor="@android:color/black"
+            android:gravity="center"/>
+
+    </LinearLayout>
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/ind_below_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/ll_title"
+        android:background="@color/white"
+        android:visibility="gone"/>
+</RelativeLayout>
