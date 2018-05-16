@@ -268,15 +268,7 @@ public class HomePageScrollView extends LinearLayout implements NestedScrollingP
 //        getChildAt(0).measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
         ViewGroup.LayoutParams params = mViewPager.getLayoutParams();
         params.height = getMeasuredHeight() - mNav.getMeasuredHeight() - 96;//该空件高度-头部高度-indicator高度+（头部高度-搜索框高度）
-        View vp =  getChildAt(2);
-        if (vp instanceof ViewPager){
-            vp.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(params.height, MeasureSpec.AT_MOST));
-            setMeasuredDimension(getMeasuredWidth(), mTop.getMeasuredHeight() + mNav.getMeasuredHeight() + mViewPager.getMeasuredHeight());
-        }else {
-            throw new RuntimeException(
-                    "third child view show used by ViewPager !");
-        }
-
+        measureChild(mViewPager,widthMeasureSpec,MeasureSpec.makeMeasureSpec(params.height, MeasureSpec.AT_MOST));
 
     }
 
