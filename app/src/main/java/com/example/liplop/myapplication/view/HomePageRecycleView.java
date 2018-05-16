@@ -20,6 +20,7 @@ public class HomePageRecycleView extends RecyclerView {
     protected void onMeasure(int widthSpec, int heightSpec) {
         super.onMeasure(widthSpec, heightSpec);
         //需要在绘制前重新计算高度，原高度加上可以上推的高度（head高度-搜索栏高度）
-        setMeasuredDimension(getMeasuredWidth(),getMeasuredHeight() + 360 - 96);
+//        setMeasuredDimension(getMeasuredWidth(),getMeasuredHeight());
+
     }
 }
