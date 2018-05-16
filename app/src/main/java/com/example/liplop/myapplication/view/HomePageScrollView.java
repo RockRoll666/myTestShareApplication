@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.OverScroller;
 
 import com.example.liplop.myapplication.R;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 
 public class HomePageScrollView extends LinearLayout implements NestedScrollingParent {
@@ -47,7 +48,9 @@ public class HomePageScrollView extends LinearLayout implements NestedScrollingP
     public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
         Log.e(TAG, "onNestedPreScroll");
         boolean hiddenTop = dy > 0 && getScrollY() < mTopViewHeight;
-        boolean showTop = dy < 0 && getScrollY() >= 0 && !ViewCompat.canScrollVertically(target, -1);
+        boolean showTop = dy < 0 && getScrollY() >= 0 &&
+                (!ViewCompat.canScrollVertically(target, -1)||(target instanceof SmartRefreshLayout && getScrollY() != 0));
+        //如果target不是SmartRefreshLayout则当target不能垂直滑动时进行联动滚动，如果是target是SmartRefreshLayout，则当联动的布局未复位至y =0时可联动滚动，复位至0时需要触发SmartRefreshLayout的下拉刷新
 
         if (hiddenTop || showTop) {
             scrollBy(0, dy);

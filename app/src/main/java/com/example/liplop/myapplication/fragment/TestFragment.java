@@ -14,6 +14,9 @@ import android.widget.ListView;
 
 import com.example.liplop.myapplication.R;
 import com.example.liplop.myapplication.TextAdapter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.Arrays;
 
@@ -29,6 +32,8 @@ public class TestFragment extends Fragment {
     };
     @BindView(R.id.rv_content)
     RecyclerView rvContent;
+    @BindView(R.id.rfl_main)
+    SmartRefreshLayout rfl;
 
     @Nullable
     @Override
@@ -36,7 +41,19 @@ public class TestFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_test, null);
         ButterKnife.bind(this,rootView);
         initView();
+        initSmartRefreshLayout();
         return rootView;
+    }
+
+    private void initSmartRefreshLayout(){
+        rfl.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
+        rfl.setEnableLoadMore(false);
+//        rfl.setEnableRefresh(false);
     }
 
     private void initView(){
