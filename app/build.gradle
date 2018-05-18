@@ -33,13 +33,12 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation  'com.android.support:appcompat-v7:25.4.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-5'
+    implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
     testImplementation  'junit:junit:4.12'
-    implementation  files('libs/open_sdk_r5990_lite.jar')
     implementation  'com.sina.weibo.sdk:core:4.2.7:openDefaultRelease@aar'
     implementation  'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.1.4'
     implementation  'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-5'
     implementation 'com.android.support:design:25.4.0'
 }

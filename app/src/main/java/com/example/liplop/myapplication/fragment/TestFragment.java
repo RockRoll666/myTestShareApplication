@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
  */
 public class TestFragment extends Fragment {
     private static final String[] strDatas = new String[] {
-            "first", "second", "third", "fourth", "fifth","1231","1223","112","123","123123"
+            "first", /*"second", "third", "fourth", "fifth","1231","1223","112","123","123123"*/
     };
     @BindView(R.id.rv_content)
     RecyclerView rvContent;

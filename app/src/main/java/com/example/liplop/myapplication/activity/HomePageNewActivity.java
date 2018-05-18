@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.example.liplop.myapplication.R;
 import com.example.liplop.myapplication.fragment.TestFragment;
+import com.example.liplop.myapplication.fragment.TestScrollFragment;
 import com.example.liplop.myapplication.view.HomePageScrollView;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -58,7 +59,7 @@ public class HomePageNewActivity extends AppCompatActivity {
         mTitles.add("title2");
         mFragments = new ArrayList<>();
         TestFragment fragment1 = new TestFragment();
-        TestFragment fragment2 = new TestFragment();
+        TestScrollFragment fragment2 = new TestScrollFragment();
         mFragments.add(fragment1);
         mFragments.add(fragment2);
         initViewPager();
