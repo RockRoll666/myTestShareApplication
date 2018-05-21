@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,10 +14,10 @@ import java.util.List;
  */
 
 public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<BaseRecycleViewHolder> {
-    protected List<T> mData;
+    protected ArrayList<T> mData;
 
     public BaseRecycleViewAdapter(List<T> mData) {
-        this.mData = mData;
+        this.mData = new ArrayList<>(mData);
     }
 
     @Override
@@ -47,7 +48,7 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
     public abstract void convert(BaseRecycleViewHolder holder, T t, int position) ;
 
     public void setmData(List<T> mData) {
-        this.mData = mData;
+        this.mData = new ArrayList<>(mData);
         notifyDataSetChanged();
     }
 

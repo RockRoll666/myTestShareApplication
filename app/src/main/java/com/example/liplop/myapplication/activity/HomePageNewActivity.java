@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.example.liplop.myapplication.R;
 import com.example.liplop.myapplication.fragment.TestFragment;
+import com.example.liplop.myapplication.fragment.TestRelativeRefreshLayout;
 import com.example.liplop.myapplication.fragment.TestScrollFragment;
 import com.example.liplop.myapplication.view.HomePageScrollView;
 
@@ -57,11 +58,14 @@ public class HomePageNewActivity extends AppCompatActivity {
         mTitles = new ArrayList<>();
         mTitles.add("title1");
         mTitles.add("title2");
+        mTitles.add("title3");
         mFragments = new ArrayList<>();
         TestFragment fragment1 = new TestFragment();
         TestScrollFragment fragment2 = new TestScrollFragment();
+        TestRelativeRefreshLayout fragment3 = new TestRelativeRefreshLayout();
         mFragments.add(fragment1);
         mFragments.add(fragment2);
+        mFragments.add(fragment3);
         initViewPager();
         initIndicator();
     }
