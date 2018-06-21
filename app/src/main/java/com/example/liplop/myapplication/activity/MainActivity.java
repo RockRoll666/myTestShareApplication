@@ -3,11 +3,13 @@ package com.example.liplop.myapplication.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.liplop.myapplication.R;
 import com.example.liplop.myapplication.utis.ImageUtil;
+import com.example.liplop.myapplication.utis.SPUtil;
 import com.example.liplop.myapplication.utis.ShareUtils;
 import com.example.liplop.myapplication.utis.ToastUtil;
 import com.sina.weibo.sdk.api.WebpageObject;
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements WbShareCallback{
         mWbShareHandler.registerApp();
     }
 
-    @OnClick({R.id.btn_share_qq,R.id.btn_share_qzone,R.id.btn_share_weibo,R.id.btn_share_wxapp,R.id.btn_share_wxpyq,R.id.btn_test_abl,R.id.btn_home_page,R.id.btn_home_page_new})
+    @OnClick({R.id.btn_share_qq,R.id.btn_share_qzone,R.id.btn_share_weibo,R.id.btn_share_wxapp,R.id.btn_share_wxpyq,R.id.btn_test_abl,R.id.btn_home_page,R.id.btn_home_page_new,R.id.btn_test_sp})
     void onBtnClick(View v){
         WXWebpageObject webpageObject;
         WXMediaMessage msg;
@@ -134,9 +136,26 @@ public class MainActivity extends AppCompatActivity implements WbShareCallback{
                 Intent intent3 = new Intent(this,HomePageNewActivity.class);
                 startActivity(intent3);
                 break;
+            case R.id.btn_test_sp:
+                testSp();
+                break;
             default:
                 break;
         }
+    }
+
+    private void testSp(){
+        for (int i = 0; i < 10000; i++) {
+            int count = TextUtils.isEmpty(SPUtil.getInstance().getString("count"))?0:Integer.parseInt(SPUtil.getInstance().getString("count"));
+            SPUtil.getInstance().putString("count",String.valueOf(count + 1));
+        }
+        ((Button)findViewById(R.id.btn_test_sp)).setText(SPUtil.getInstance().getString("count"));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ((Button)findViewById(R.id.btn_test_sp)).setText(SPUtil.getInstance().getString("count"));
     }
 
     @Override

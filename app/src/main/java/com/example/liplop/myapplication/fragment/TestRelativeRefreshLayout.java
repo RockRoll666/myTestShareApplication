@@ -19,7 +19,7 @@ public class TestRelativeRefreshLayout extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment,null);
-        ((SmartRefreshLayout)root.findViewById(R.id.rfl_test)).setEnableLoadMore(false);
+//        ((SmartRefreshLayout)root.findViewById(R.id.rfl_test)).setEnableLoadMore(false);
         return root;
     }
 }

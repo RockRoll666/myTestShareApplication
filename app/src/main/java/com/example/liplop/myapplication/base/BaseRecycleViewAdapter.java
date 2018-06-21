@@ -47,12 +47,17 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
      */
     public abstract void convert(BaseRecycleViewHolder holder, T t, int position) ;
 
-    public void setmData(List<T> mData) {
-        this.mData = new ArrayList<>(mData);
+    public void setmData(List<T> data) {
+        this.mData = new ArrayList<>(data);
         notifyDataSetChanged();
     }
 
     public List<T> getmData() {
         return mData;
     }
+
+    public void addData(List<T> data){
+        mData.addAll(data);
+    }
+
 }
